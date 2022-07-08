@@ -13,14 +13,13 @@ build:
   noarch: python
   number: 6
   script: "{{ PYTHON }} -m pip install . -vv"
-  skip: True  # [win]
 
 requirements:
   host:
     - pip
-    - python
+    - python >=3.6
   run:
-    - python
+    - python >=3.6
 
 test:
   imports:
