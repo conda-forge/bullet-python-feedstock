@@ -6,22 +6,25 @@ package:
   version: "{{ version }}"
 
 source:
-  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  url: "https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
   sha256: dfa0fa81810ad1a9e688815ca04f24af87ff5cdbe803b42fa634b1f50fc9d887
 
 build:
-  number: 7
+  noarch: python
+  number: 8
   script: "{{ PYTHON }} -m pip install . -vv"
-  skip: True  # [win]
 
 requirements:
   host:
     - pip
-    - python
+    - setuptools >=42
+    - python {{ python_min }}
   run:
-    - python
+    - python >={{ python_min }}
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - bullet
 
